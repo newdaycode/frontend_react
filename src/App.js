@@ -1,25 +1,29 @@
-import logo from './logo.svg';
 import './App.css';
+import AdminLayout from './layouts/Admin'
+import AuthLayout from './layouts/Auth'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  // Link
+} from "react-router-dom";
+import React from 'react'
 
-function App() {
+//functional component
+const App = () =>{
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router> 
+      <Switch>
+        <Route path="/admin" render={(props) => <AdminLayout {...props} />} />
+        <Route path="/auth" render={(props) => <AuthLayout {...props} />} />
+        <Route path="/" render={(props) => <AuthLayout {...props} />} />
+        <Route path="/">
+          404
+        </Route>
+      </Switch>
+    </Router>
   );
+  
 }
 
 export default App;
